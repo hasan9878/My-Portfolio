@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Transition } from "framer-motion";
 import type { ShapeItem } from "@/data/shapes";
 
 type Props = { item: ShapeItem };
@@ -18,6 +18,7 @@ export default function AnimatedShape({ item }: Props) {
   const duration = item.duration ?? 6;
   const delay = item.delay ?? 0;
 
+  // Animation object
   const anim =
     item.animate === "x"
       ? { x: [0, -distance, 0] }
@@ -27,10 +28,13 @@ export default function AnimatedShape({ item }: Props) {
       ? { x: [0, distance, 0], y: [0, -distance, 0] }
       : { rotate: [0, 360] };
 
-  const transition =
-    item.animate === "spin"
-      ? { duration, repeat: Infinity, ease: "linear", delay }
-      : { duration, repeat: Infinity, delay };
+  // TypeScript-safe transition
+  const transition: Transition = {
+    duration,
+    repeat: Infinity,
+    delay,
+    ease: item.animate === "spin" ? "linear" : undefined,
+  };
 
   return (
     <motion.div
