@@ -12,10 +12,10 @@ export default function ExperienceSection() {
 
       {/* Tabs */}
       <div className="flex gap-6 mb-10 sticky top-20 z-10 py-4">
-        {["skills", "experience", "education"].map((tab) => (
+        {(["skills", "experience", "education"] as const).map((tab) => (
           <button
             key={tab}
-            onClick={() => setActiveTab(tab as any)}
+            onClick={() => setActiveTab(tab)} // ✅ any বাদ
             className={`px-6 py-2 rounded-full font-semibold transition ${
               activeTab === tab
                 ? "bg-fuchsia-500 text-white"
@@ -46,7 +46,6 @@ export default function ExperienceSection() {
                     bg-[#141414]
                   "
                   style={{
-                    // খালি অংশকে ভেতরে বসা দেখাতে কেবল inset shadow ব্যবহার
                     boxShadow:
                       "inset 0 1px 1px rgba(255,255,255,0.06), inset 0 -2px 4px rgba(0,0,0,0.65)",
                   }}
@@ -61,7 +60,7 @@ export default function ExperienceSection() {
                     }}
                   />
 
-                  {/* Empty part (ফিলের পরে যে অংশ) — একটু বেশি ডার্ক + subtle inset glow */}
+                  {/* Empty part */}
                   <div
                     className="
                       absolute top-0 bottom-0 right-0 rounded-r-full
@@ -70,7 +69,6 @@ export default function ExperienceSection() {
                     "
                     style={{ left: `${skill.level}%` }}
                   >
-                    {/* জংশন লাইনে হালকা ডার্ক গ্রেডিয়েন্ট যেন কাট-ধার স্পষ্ট হয় */}
                     <span
                       className="
                         absolute inset-y-0 left-0 w-4
@@ -78,7 +76,6 @@ export default function ExperienceSection() {
                         pointer-events-none
                       "
                     />
-                    {/* খালি অংশটাকে ভেতরে বসা দেখাতে অতিরিক্ত সূক্ষ্ম inset */}
                     <span
                       className="
                         absolute inset-0 rounded-r-full

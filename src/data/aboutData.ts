@@ -1,5 +1,6 @@
 // src/data/aboutData.ts
 import { Facebook, Github, Linkedin } from "lucide-react";
+import { SVGProps } from "react";
 
 export interface ButtonType {
   label: string;
@@ -11,7 +12,7 @@ export interface ButtonType {
 export interface SocialLinkType {
   platform: string;
   url: string;
-  icon: React.ComponentType<any>; // React component type
+  icon: React.ComponentType<SVGProps<SVGSVGElement>>; // ✅ any বাদ
   bgColor: string;
   hoverColor: string;
 }
@@ -34,7 +35,7 @@ export const aboutData: AboutDataType = {
 I focus on writing clean, maintainable code and following best practices. I enjoy solving problems creatively and delivering applications that are both efficient and visually appealing.
 
 Constantly learning, I aim to create web experiences that are scalable, performant, and enjoyable for users.`,
-  
+
   buttons: [
     { label: "My CV", url: "/cv", bgColor: "bg-[#212121]", hoverColor: "hover:bg-gray-800" },
     { label: "Hire Me", url: "/hire", bgColor: "bg-[#212121]", hoverColor: "hover:bg-gray-800" },
